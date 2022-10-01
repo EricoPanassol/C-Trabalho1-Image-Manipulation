@@ -40,3 +40,19 @@ Para as bordas da imagem, repete-se os pixels da borda oposta da própria regiã
 Repetindo-se o processo para toda a imagem, tem-se algo como segue:
 
 ![alt text](https://mflash.github.io/progswb2/trab/t1-222-hjsdv5sftysc734r/median.gif)
+
+Porém se simplesmente aplicarmos a mediana, estaremos na verdade utilizando um algoritmo de suavização, que costuma **remover** o ruído já presente em uma imagem. Portanto, o que faremos é **subtrair** o valor da mediana do valor do pixel original (central), e então armazenar esse resultado na imagem de saída. Esse resultado será amplificado por um **fator**, que poderá ser ajustado pelo teclado.
+
+O detalhe final é que os pixels são armazenados em RGB, portanto é necessário encontrar uma forma de ordená-los considerando a sua cor. Uma forma de fazer isso é calculando a **luminância** associada à cor, isto é, o quão "clara" ou "escura" ela é. Esse cálculo pode ser feito da seguinte forma:
+
+_lum = 0,59 . G + 0,3 . R + 0,11 . B_
+
+Ou seja, é uma media ponderada para R, G e B. Isso deve ser feito dessa forma, pois o olho humano tem mais facilidade de distinguir tons de verde, depois tons de vermelho e por último, tons de azul.
+
+Eis um resumo do algoritmo a ser implementado:
+
+1. Passar por toda a imagem de entrada:
+    1. Calcular a mediana de cada pixel, considerando a luminância dos pixels na região definida em torno do pixel central (ex: 3x3)
+    2. Subtrair o valor da mediana (RGB) do valor do pixel central (RGB), armazenando na imagem de saída. Obs: cada componente desse resultado deve estar limitado à          faixa 0-255.
+2. Exibir a imagem de saída
+
