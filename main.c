@@ -198,13 +198,13 @@ void processa()
                 Pixel pixel9 = in[altura+1][largura+1];
 
                 // Atribuindo uma luminância para cada pixel
-                double lumPixel1 = 0.59 * pixel1.g + 0.3 * pixel1.r + 0.1 * pixel1.b;
-                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.1 * pixel2.b;
-                double lumPixel3 = 0.59 * pixel3.g + 0.3 * pixel3.r + 0.1 * pixel3.b;
-                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.1 * pixel4.b;
-                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.1 * pixel6.b;
-                double lumPixel7 = 0.59 * pixel7.g + 0.3 * pixel7.r + 0.1 * pixel7.b;
-                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.1 * pixel8.b;
+                double lumPixel1 = 0.59 * pixel1.g + 0.3 * pixel1.r + 0.11 * pixel1.b;
+                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.11 * pixel2.b;
+                double lumPixel3 = 0.59 * pixel3.g + 0.3 * pixel3.r + 0.11 * pixel3.b;
+                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.11 * pixel4.b;
+                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.11 * pixel6.b;
+                double lumPixel7 = 0.59 * pixel7.g + 0.3 * pixel7.r + 0.11 * pixel7.b;
+                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.11 * pixel8.b;
                 double lumPixel9 = 0.59 * pixel9.g + 0.3 * pixel9.r + 0.1 * pixel9.b;
                 
                 // Adicionando os pixels num array para encontrar a mediana
@@ -245,9 +245,35 @@ void processa()
                 }
                 
                 // subtraio o R, G, B do pixel central pelo R, G, B do pixel da mediana
-                out[altura][largura].r = in[altura][largura].r - subtraendo.r;
-                out[altura][largura].g = in[altura][largura].g - subtraendo.g;
-                out[altura][largura].b = in[altura][largura].b - subtraendo.b;
+                if(((in[altura][largura].r - subtraendo.r) * fator) < 0){
+                    out[altura][largura].r = 0;
+                }
+                else if(((in[altura][largura].r - subtraendo.r) * fator) > 255){
+                    out[altura][largura].r = 255;
+                }
+                else{ 
+                    out[altura][largura].r = (in[altura][largura].r - subtraendo.r) * fator;   
+                }
+                
+                if(((in[altura][largura].g - subtraendo.g) * fator) < 0){
+                    out[altura][largura].g = 0;
+                }
+                else if(((in[altura][largura].g - subtraendo.g) * fator) > 255){
+                    out[altura][largura].g = 255;
+                }
+                else{ 
+                    out[altura][largura].g = (in[altura][largura].g - subtraendo.g) * fator;   
+                }
+
+                if(((in[altura][largura].b - subtraendo.b) * fator) < 0){
+                    out[altura][largura].b = 0;
+                }
+                else if(((in[altura][largura].b - subtraendo.b) * fator) > 255){
+                    out[altura][largura].b = 255;
+                }
+                else{ 
+                    out[altura][largura].b = (in[altura][largura].b - subtraendo.b) * fator;   
+                }
             }
             else if(altura == 0 && largura != 0 && largura != width-1){// linha de cima
                 // Criando os pixels que faltam
@@ -261,11 +287,11 @@ void processa()
                 Pixel pixel3 = pixel9;
 
                 // Atribuindo uma luminância para cada pixel
-                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.1 * pixel4.b;
-                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.1 * pixel6.b;
-                double lumPixel7 = 0.59 * pixel7.g + 0.3 * pixel7.r + 0.1 * pixel7.b;
-                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.1 * pixel8.b;
-                double lumPixel9 = 0.59 * pixel9.g + 0.3 * pixel9.r + 0.1 * pixel9.b;
+                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.11 * pixel4.b;
+                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.11 * pixel6.b;
+                double lumPixel7 = 0.59 * pixel7.g + 0.3 * pixel7.r + 0.11 * pixel7.b;
+                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.11 * pixel8.b;
+                double lumPixel9 = 0.59 * pixel9.g + 0.3 * pixel9.r + 0.11 * pixel9.b;
                 double lumPixel1 = lumPixel7;
                 double lumPixel2 = lumPixel8;
                 double lumPixel3 = lumPixel9;
@@ -299,9 +325,35 @@ void processa()
                 }
                 
                 // subtraio o R, G, B do pixel central pelo R, G, B do pixel da mediana
-                out[altura][largura].r = in[altura][largura].r - subtraendo.r;
-                out[altura][largura].g = in[altura][largura].g - subtraendo.g;
-                out[altura][largura].b = in[altura][largura].b - subtraendo.b;
+                if(((in[altura][largura].r - subtraendo.r) * fator) < 0){
+                    out[altura][largura].r = 0;
+                }
+                else if(((in[altura][largura].r - subtraendo.r) * fator) > 255){
+                    out[altura][largura].r = 255;
+                }
+                else{ 
+                    out[altura][largura].r = (in[altura][largura].r - subtraendo.r) * fator;   
+                }
+                
+                if(((in[altura][largura].g - subtraendo.g) * fator) < 0){
+                    out[altura][largura].g = 0;
+                }
+                else if(((in[altura][largura].g - subtraendo.g) * fator) > 255){
+                    out[altura][largura].g = 255;
+                }
+                else{ 
+                    out[altura][largura].g = (in[altura][largura].g - subtraendo.g) * fator;   
+                }
+
+                if(((in[altura][largura].b - subtraendo.b) * fator) < 0){
+                    out[altura][largura].b = 0;
+                }
+                else if(((in[altura][largura].b - subtraendo.b) * fator) > 255){
+                    out[altura][largura].b = 255;
+                }
+                else{ 
+                    out[altura][largura].b = (in[altura][largura].b - subtraendo.b) * fator;   
+                }
             }
 
             // ---------------------------------------------------------------------------------------
@@ -318,11 +370,11 @@ void processa()
                 Pixel pixel7 = pixel9;
 
                 // Atribuindo uma luminância para cada pixel
-                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.1 * pixel2.b;
-                double lumPixel3 = 0.59 * pixel3.g + 0.3 * pixel3.r + 0.1 * pixel3.b;
-                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.1 * pixel6.b;
-                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.1 * pixel8.b;
-                double lumPixel9 = 0.59 * pixel9.g + 0.3 * pixel9.r + 0.1 * pixel9.b;
+                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.11 * pixel2.b;
+                double lumPixel3 = 0.59 * pixel3.g + 0.3 * pixel3.r + 0.11 * pixel3.b;
+                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.11 * pixel6.b;
+                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.11 * pixel8.b;
+                double lumPixel9 = 0.59 * pixel9.g + 0.3 * pixel9.r + 0.11 * pixel9.b;
                 double lumPixel1 = lumPixel3;
                 double lumPixel4 = lumPixel6;
                 double lumPixel7 = lumPixel9;
@@ -356,9 +408,35 @@ void processa()
                 }
                 
                 // subtraio o R, G, B do pixel central pelo R, G, B do pixel da mediana
-                out[altura][largura].r = in[altura][largura].r - subtraendo.r;
-                out[altura][largura].g = in[altura][largura].g - subtraendo.g;
-                out[altura][largura].b = in[altura][largura].b - subtraendo.b;
+                if(((in[altura][largura].r - subtraendo.r) * fator) < 0){
+                    out[altura][largura].r = 0;
+                }
+                else if(((in[altura][largura].r - subtraendo.r) * fator) > 255){
+                    out[altura][largura].r = 255;
+                }
+                else{ 
+                    out[altura][largura].r = (in[altura][largura].r - subtraendo.r) * fator;   
+                }
+                
+                if(((in[altura][largura].g - subtraendo.g) * fator) < 0){
+                    out[altura][largura].g = 0;
+                }
+                else if(((in[altura][largura].g - subtraendo.g) * fator) > 255){
+                    out[altura][largura].g = 255;
+                }
+                else{ 
+                    out[altura][largura].g = (in[altura][largura].g - subtraendo.g) * fator;   
+                }
+
+                if(((in[altura][largura].b - subtraendo.b) * fator) < 0){
+                    out[altura][largura].b = 0;
+                }
+                else if(((in[altura][largura].b - subtraendo.b) * fator) > 255){
+                    out[altura][largura].b = 255;
+                }
+                else{ 
+                    out[altura][largura].b = (in[altura][largura].b - subtraendo.b) * fator;   
+                }
             }
 
              // ---------------------------------------------------------------------------------------
@@ -375,11 +453,11 @@ void processa()
                 Pixel pixel9 = pixel7;
 
                 // Atribuindo uma luminância para cada pixel
-                double lumPixel1 = 0.59 * pixel1.g + 0.3 * pixel1.r + 0.1 * pixel1.b;
-                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.1 * pixel2.b;
-                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.1 * pixel4.b;
-                double lumPixel7 = 0.59 * pixel7.g + 0.3 * pixel7.r + 0.1 * pixel7.b;
-                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.1 * pixel8.b;
+                double lumPixel1 = 0.59 * pixel1.g + 0.3 * pixel1.r + 0.11 * pixel1.b;
+                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.11 * pixel2.b;
+                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.11 * pixel4.b;
+                double lumPixel7 = 0.59 * pixel7.g + 0.3 * pixel7.r + 0.11 * pixel7.b;
+                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.11 * pixel8.b;
                 double lumPixel3 = lumPixel1;
                 double lumPixel6 = lumPixel4;
                 double lumPixel9 = lumPixel7;
@@ -413,9 +491,35 @@ void processa()
                 }
                 
                 // subtraio o R, G, B do pixel central pelo R, G, B do pixel da mediana
-                out[altura][largura].r = in[altura][largura].r - subtraendo.r;
-                out[altura][largura].g = in[altura][largura].g - subtraendo.g;
-                out[altura][largura].b = in[altura][largura].b - subtraendo.b;
+                if(((in[altura][largura].r - subtraendo.r) * fator) < 0){
+                    out[altura][largura].r = 0;
+                }
+                else if(((in[altura][largura].r - subtraendo.r) * fator) > 255){
+                    out[altura][largura].r = 255;
+                }
+                else{ 
+                    out[altura][largura].r = (in[altura][largura].r - subtraendo.r) * fator;   
+                }
+                
+                if(((in[altura][largura].g - subtraendo.g) * fator) < 0){
+                    out[altura][largura].g = 0;
+                }
+                else if(((in[altura][largura].g - subtraendo.g) * fator) > 255){
+                    out[altura][largura].g = 255;
+                }
+                else{ 
+                    out[altura][largura].g = (in[altura][largura].g - subtraendo.g) * fator;   
+                }
+
+                if(((in[altura][largura].b - subtraendo.b) * fator) < 0){
+                    out[altura][largura].b = 0;
+                }
+                else if(((in[altura][largura].b - subtraendo.b) * fator) > 255){
+                    out[altura][largura].b = 255;
+                }
+                else{ 
+                    out[altura][largura].b = (in[altura][largura].b - subtraendo.b) * fator;   
+                }
             }
 
             // ---------------------------------------------------------------------------------------
@@ -432,11 +536,11 @@ void processa()
                 Pixel pixel9 = pixel3;
 
                 // Atribuindo uma luminância para cada pixel
-                double lumPixel1 = 0.59 * pixel1.g + 0.3 * pixel1.r + 0.1 * pixel1.b;
-                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.1 * pixel2.b;
-                double lumPixel3 = 0.59 * pixel3.g + 0.3 * pixel3.r + 0.1 * pixel3.b;
-                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.1 * pixel4.b;
-                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.1 * pixel6.b;
+                double lumPixel1 = 0.59 * pixel1.g + 0.3 * pixel1.r + 0.11 * pixel1.b;
+                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.11 * pixel2.b;
+                double lumPixel3 = 0.59 * pixel3.g + 0.3 * pixel3.r + 0.11 * pixel3.b;
+                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.11 * pixel4.b;
+                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.11 * pixel6.b;
                 double lumPixel7 = lumPixel1;
                 double lumPixel8 = lumPixel2;
                 double lumPixel9 = lumPixel3;
@@ -470,9 +574,35 @@ void processa()
                 }
                 
                 // subtraio o R, G, B do pixel central pelo R, G, B do pixel da mediana
-                out[altura][largura].r = in[altura][largura].r - subtraendo.r;
-                out[altura][largura].g = in[altura][largura].g - subtraendo.g;
-                out[altura][largura].b = in[altura][largura].b - subtraendo.b;
+                if(((in[altura][largura].r - subtraendo.r) * fator) < 0){
+                    out[altura][largura].r = 0;
+                }
+                else if(((in[altura][largura].r - subtraendo.r) * fator) > 255){
+                    out[altura][largura].r = 255;
+                }
+                else{ 
+                    out[altura][largura].r = (in[altura][largura].r - subtraendo.r) * fator;   
+                }
+                
+                if(((in[altura][largura].g - subtraendo.g) * fator) < 0){
+                    out[altura][largura].g = 0;
+                }
+                else if(((in[altura][largura].g - subtraendo.g) * fator) > 255){
+                    out[altura][largura].g = 255;
+                }
+                else{ 
+                    out[altura][largura].g = (in[altura][largura].g - subtraendo.g) * fator;   
+                }
+
+                if(((in[altura][largura].b - subtraendo.b) * fator) < 0){
+                    out[altura][largura].b = 0;
+                }
+                else if(((in[altura][largura].b - subtraendo.b) * fator) > 255){
+                    out[altura][largura].b = 255;
+                }
+                else{ 
+                    out[altura][largura].b = (in[altura][largura].b - subtraendo.b) * fator;   
+                }
             }
 
             // ---------------------------------------------------------------------------------------
@@ -488,9 +618,9 @@ void processa()
                 Pixel pixel4 = pixel6;
 
                 // Atribuindo uma luminância para cada pixel
-                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.1 * pixel6.b;
-                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.1 * pixel8.b;
-                double lumPixel9 = 0.59 * pixel9.g + 0.3 * pixel9.r + 0.1 * pixel9.b;
+                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.11 * pixel6.b;
+                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.11 * pixel8.b;
+                double lumPixel9 = 0.59 * pixel9.g + 0.3 * pixel9.r + 0.11 * pixel9.b;
                 double lumPixel1 = lumPixel9;
                 double lumPixel2 = lumPixel8;
                 double lumPixel3 = lumPixel9;
@@ -520,9 +650,35 @@ void processa()
                 }
                 
                 // subtraio o R, G, B do pixel central pelo R, G, B do pixel da mediana
-                out[altura][largura].r = in[altura][largura].r - subtraendo.r;
-                out[altura][largura].g = in[altura][largura].g - subtraendo.g;
-                out[altura][largura].b = in[altura][largura].b - subtraendo.b;
+                if(((in[altura][largura].r - subtraendo.r) * fator) < 0){
+                    out[altura][largura].r = 0;
+                }
+                else if(((in[altura][largura].r - subtraendo.r) * fator) > 255){
+                    out[altura][largura].r = 255;
+                }
+                else{ 
+                    out[altura][largura].r = (in[altura][largura].r - subtraendo.r) * fator;   
+                }
+                
+                if(((in[altura][largura].g - subtraendo.g) * fator) < 0){
+                    out[altura][largura].g = 0;
+                }
+                else if(((in[altura][largura].g - subtraendo.g) * fator) > 255){
+                    out[altura][largura].g = 255;
+                }
+                else{ 
+                    out[altura][largura].g = (in[altura][largura].g - subtraendo.g) * fator;   
+                }
+
+                if(((in[altura][largura].b - subtraendo.b) * fator) < 0){
+                    out[altura][largura].b = 0;
+                }
+                else if(((in[altura][largura].b - subtraendo.b) * fator) > 255){
+                    out[altura][largura].b = 255;
+                }
+                else{ 
+                    out[altura][largura].b = (in[altura][largura].b - subtraendo.b) * fator;   
+                }
             }
 
             // ---------------------------------------------------------------------------------------
@@ -539,9 +695,9 @@ void processa()
                 Pixel pixel6 = pixel4;
                 
                 // Atribuindo uma luminância para cada pixel
-                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.1 * pixel4.b;
-                double lumPixel7 = 0.59 * pixel7.g + 0.3 * pixel7.r + 0.1 * pixel7.b;
-                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.1 * pixel8.b;
+                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.11 * pixel4.b;
+                double lumPixel7 = 0.59 * pixel7.g + 0.3 * pixel7.r + 0.11 * pixel7.b;
+                double lumPixel8 = 0.59 * pixel8.g + 0.3 * pixel8.r + 0.11 * pixel8.b;
                 double lumPixel1 = lumPixel7;
                 double lumPixel2 = lumPixel8;
                 double lumPixel3 = lumPixel7;
@@ -571,9 +727,35 @@ void processa()
                 }
                 
                 // subtraio o R, G, B do pixel central pelo R, G, B do pixel da mediana
-                out[altura][largura].r = in[altura][largura].r - subtraendo.r;
-                out[altura][largura].g = in[altura][largura].g - subtraendo.g;
-                out[altura][largura].b = in[altura][largura].b - subtraendo.b;
+                if(((in[altura][largura].r - subtraendo.r) * fator) < 0){
+                    out[altura][largura].r = 0;
+                }
+                else if(((in[altura][largura].r - subtraendo.r) * fator) > 255){
+                    out[altura][largura].r = 255;
+                }
+                else{ 
+                    out[altura][largura].r = (in[altura][largura].r - subtraendo.r) * fator;   
+                }
+                
+                if(((in[altura][largura].g - subtraendo.g) * fator) < 0){
+                    out[altura][largura].g = 0;
+                }
+                else if(((in[altura][largura].g - subtraendo.g) * fator) > 255){
+                    out[altura][largura].g = 255;
+                }
+                else{ 
+                    out[altura][largura].g = (in[altura][largura].g - subtraendo.g) * fator;   
+                }
+
+                if(((in[altura][largura].b - subtraendo.b) * fator) < 0){
+                    out[altura][largura].b = 0;
+                }
+                else if(((in[altura][largura].b - subtraendo.b) * fator) > 255){
+                    out[altura][largura].b = 255;
+                }
+                else{ 
+                    out[altura][largura].b = (in[altura][largura].b - subtraendo.b) * fator;   
+                }
             }
 
             // ---------------------------------------------------------------------------------------
@@ -590,9 +772,9 @@ void processa()
                 Pixel pixel9 = pixel3;
                 
                 // Atribuindo uma luminância para cada pixel
-                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.1 * pixel2.b;
-                double lumPixel3 = 0.59 * pixel3.g + 0.3 * pixel3.r + 0.1 * pixel3.b;
-                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.1 * pixel6.b;
+                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.11 * pixel2.b;
+                double lumPixel3 = 0.59 * pixel3.g + 0.3 * pixel3.r + 0.11 * pixel3.b;
+                double lumPixel6 = 0.59 * pixel6.g + 0.3 * pixel6.r + 0.11 * pixel6.b;
                 double lumPixel1 = lumPixel3;
                 double lumPixel4 = lumPixel6;
                 double lumPixel7 = lumPixel3;
@@ -622,9 +804,35 @@ void processa()
                 }
                 
                 // subtraio o R, G, B do pixel central pelo R, G, B do pixel da mediana
-                out[altura][largura].r = in[altura][largura].r - subtraendo.r;
-                out[altura][largura].g = in[altura][largura].g - subtraendo.g;
-                out[altura][largura].b = in[altura][largura].b - subtraendo.b;
+                if(((in[altura][largura].r - subtraendo.r) * fator) < 0){
+                    out[altura][largura].r = 0;
+                }
+                else if(((in[altura][largura].r - subtraendo.r) * fator) > 255){
+                    out[altura][largura].r = 255;
+                }
+                else{ 
+                    out[altura][largura].r = (in[altura][largura].r - subtraendo.r) * fator;   
+                }
+                
+                if(((in[altura][largura].g - subtraendo.g) * fator) < 0){
+                    out[altura][largura].g = 0;
+                }
+                else if(((in[altura][largura].g - subtraendo.g) * fator) > 255){
+                    out[altura][largura].g = 255;
+                }
+                else{ 
+                    out[altura][largura].g = (in[altura][largura].g - subtraendo.g) * fator;   
+                }
+
+                if(((in[altura][largura].b - subtraendo.b) * fator) < 0){
+                    out[altura][largura].b = 0;
+                }
+                else if(((in[altura][largura].b - subtraendo.b) * fator) > 255){
+                    out[altura][largura].b = 255;
+                }
+                else{ 
+                    out[altura][largura].b = (in[altura][largura].b - subtraendo.b) * fator;   
+                }
             }
 
             // ---------------------------------------------------------------------------------------
@@ -641,9 +849,9 @@ void processa()
                 Pixel pixel9 = pixel1;
                 
                 // Atribuindo uma luminância para cada pixel
-                double lumPixel1 = 0.59 * pixel1.g + 0.3 * pixel1.r + 0.1 * pixel1.b;
-                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.1 * pixel2.b;
-                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.1 * pixel4.b;
+                double lumPixel1 = 0.59 * pixel1.g + 0.3 * pixel1.r + 0.11 * pixel1.b;
+                double lumPixel2 = 0.59 * pixel2.g + 0.3 * pixel2.r + 0.11 * pixel2.b;
+                double lumPixel4 = 0.59 * pixel4.g + 0.3 * pixel4.r + 0.11 * pixel4.b;
                 double lumPixel3 = lumPixel1;
                 double lumPixel6 = lumPixel4;
                 double lumPixel7 = lumPixel1;
@@ -673,9 +881,35 @@ void processa()
                 }
                 
                 // subtraio o R, G, B do pixel central pelo R, G, B do pixel da mediana
-                out[altura][largura].r = in[altura][largura].r - subtraendo.r;
-                out[altura][largura].g = in[altura][largura].g - subtraendo.g;
-                out[altura][largura].b = in[altura][largura].b - subtraendo.b;
+                if(((in[altura][largura].r - subtraendo.r) * fator) < 0){
+                    out[altura][largura].r = 0;
+                }
+                else if(((in[altura][largura].r - subtraendo.r) * fator) > 255){
+                    out[altura][largura].r = 255;
+                }
+                else{ 
+                    out[altura][largura].r = (in[altura][largura].r - subtraendo.r) * fator;   
+                }
+                
+                if(((in[altura][largura].g - subtraendo.g) * fator) < 0){
+                    out[altura][largura].g = 0;
+                }
+                else if(((in[altura][largura].g - subtraendo.g) * fator) > 255){
+                    out[altura][largura].g = 255;
+                }
+                else{ 
+                    out[altura][largura].g = (in[altura][largura].g - subtraendo.g) * fator;   
+                }
+
+                if(((in[altura][largura].b - subtraendo.b) * fator) < 0){
+                    out[altura][largura].b = 0;
+                }
+                else if(((in[altura][largura].b - subtraendo.b) * fator) > 255){
+                    out[altura][largura].b = 255;
+                }
+                else{ 
+                    out[altura][largura].b = (in[altura][largura].b - subtraendo.b) * fator;   
+                }
             }
         }
     }
@@ -708,10 +942,16 @@ void keyboard(unsigned char key, int x, int y)
 
     if(key == '=') {
         fator += 5;
+        if(fator > 255){
+            fator = 255;
+        }
         processa();
     }
     if(key == '-') {
         fator -= 5;
+        if(fator < 0){
+            fator = 1;
+        }
         processa();
     }
     glutPostRedisplay();
