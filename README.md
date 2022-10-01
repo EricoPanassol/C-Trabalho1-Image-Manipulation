@@ -26,3 +26,9 @@ Veja abaixo como diversas cores são representadas nesse formato - cada cor est�
 ![alt text](https://mflash.github.io/progswb2/trab/t1-222-hjsdv5sftysc734r/hex-colors.jpg)
 
 ![alt text](https://mflash.github.io/progswb2/trab/t1-222-hjsdv5sftysc734r/rgbcolors.jpg)
+
+O algoritmo de amplificação de ruído é baseado em uma técnica denominada **filtro da mediana**. Um filtro é uma "janela" que percorre a imagem, realizando alguma operação com o valor dos pixels e armazenando o resultado dessa operação no **pixel central** da região. Esse resultado normalmente é armazenado em uma imagem de saída, preservando a original.
+
+Para simplificar o entendimento, vamos considerar que cada pixel possui um valor numérico único, de 0 a 255. Como desejamos a mediana, precisamos **ordenar** os pixels de cada região e então substituir o pixel central na imagem de saída pelo valor presente na posição media. Veja o funcionamento abaixo para um filtro 3x3:
+
+![alt text](https://mflash.github.io/progswb2/trab/t1-222-hjsdv5sftysc734r/median.jpg)
