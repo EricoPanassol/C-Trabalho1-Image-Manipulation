@@ -119,3 +119,33 @@ Caso esteja usando outro ambiente de desenvolvimento, fornecemos um Makefile par
 ```bash
 make
 ```
+
+Se estiver utilizando o Windows, o comando é similar:
+
+```bash
+mingw32-make -f Makefile.mk
+```
+
+Alternativamente, você também pode utilizar o CMake (Cross Platform Make) para compilar pelo terminal. Para tanto, crie um diretório build embaixo do diretório do projeto e faça:
+
+```c
+cd build
+cmake ..
+make -j  # ou mingw32-make -j no Windows
+```
+
+Se for utilizado o Linux ou macOS, o projeto também pode ser compilado manualmente pelo terminal usando o comando make (e o Makefile fornecido no projeto):
+
+## 5 Avaliação
+
+Leia com atenção os critérios de avaliação:
+
+-Pontuação:
+    - Conversão das cores para luminância: 3 pontos
+    - Cálculo da mediana: 4 pontos
+    - Subtração das imagens: 3 pontos
+- Os trabalhos são **em duplas ou individuais**. A pasta do projeto deve ser compactada em um arquivo .zip e este deve ser submetido pelo Moodle até a data e hora especificadas.
+- Não envie .rar, .7z, .tar.gz - apenas .zip.
+- O código deve estar identado corretamente (qualquer editor moderno **faz isso automaticamente**).
+- **A cópia parcial ou completa do trabalho terá como conseqüência a atribuição de nota ZERO ao trabalho dos alunos envolvidos. A verificação de cópias é feita inclusive entre turmas.**
+- **A cópia de código ou algoritmos existentes da Internet também não é permitida**. Se alguma idéia encontrada na rede for utilizada na implementação, sua descrição e referência deve ser mencionada claramente no código.
