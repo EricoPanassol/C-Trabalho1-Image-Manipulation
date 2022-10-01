@@ -8,3 +8,6 @@ Por exemplo, considerando as imagens abaixo, é fácil ver na imagem com amplifi
 
 ## (a) Original
 ![alt text](https://mflash.github.io/progswb2/trab/t1-222-hjsdv5sftysc734r/trees.jpg?)
+
+## (b) Amplificação de ruído
+![alt text](https://mflash.github.io/progswb2/trab/t1-222-hjsdv5sftysc734r/trees_noise.jpg)
