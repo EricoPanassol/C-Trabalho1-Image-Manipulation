@@ -109,7 +109,9 @@ Para a compilação no Windows ou no macOS, não é necessário instalar mais na
 ## 4.1 Visual Studio Code
 
 Se você estiver utilizando o Visual Studio Code, basta descompactar o zip e abrir a pasta.
+    
     - Para **compilar**: use Ctrl+Shift+B (⌘+Shift+B no macOS).
+    
     - Para **executar**: use F5 para usar o debugger ou Ctrl+F5 para executar sem o debugger.
     
 ## 4.2 Outros ambientes ou terminal
