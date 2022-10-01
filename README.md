@@ -32,3 +32,11 @@ O algoritmo de amplificação de ruído é baseado em uma técnica denominada **
 Para simplificar o entendimento, vamos considerar que cada pixel possui um valor numérico único, de 0 a 255. Como desejamos a mediana, precisamos **ordenar** os pixels de cada região e então substituir o pixel central na imagem de saída pelo valor presente na posição media. Veja o funcionamento abaixo para um filtro 3x3:
 
 ![alt text](https://mflash.github.io/progswb2/trab/t1-222-hjsdv5sftysc734r/median.jpg)
+
+Para as bordas da imagem, repete-se os pixels da borda oposta da própria região, como no exemplo abaixo para o canto superior esquerdo:
+
+![alt text](https://mflash.github.io/progswb2/trab/t1-222-hjsdv5sftysc734r/median1.png)
+
+Repetindo-se o processo para toda a imagem, tem-se algo como segue:
+
+![alt text](https://mflash.github.io/progswb2/trab/t1-222-hjsdv5sftysc734r/median.gif)
