@@ -949,7 +949,7 @@ void keyboard(unsigned char key, int x, int y)
     }
     if(key == '-') {
         fator -= 5;
-        if(fator < 0){
+        if(fator <= 0){
             fator = 1;
         }
         processa();
