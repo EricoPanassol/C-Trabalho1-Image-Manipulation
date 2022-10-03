@@ -142,7 +142,7 @@ Se for utilizado o Linux ou macOS, o projeto também pode ser compilado manualme
 
 Leia com atenção os critérios de avaliação:
 
--Pontuação:
+- Pontuação:
     - Conversão das cores para luminância: 3 pontos
     - Cálculo da mediana: 4 pontos
     - Subtração das imagens: 3 pontos
